@@ -1,8 +1,7 @@
 package Practice10;
 
-import com.sun.java.accessibility.util.EventQueueMonitor;
 
-import java.sql.SQLOutput;
+import javax.xml.crypto.Data;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.ArrayList;
@@ -63,6 +62,11 @@ public class Main {
         System.out.println("==============TASK3=================");
         LambdaRefactorLab.sortMethodRef(events);
         System.out.println(events);
+
+        System.out.println("==============TASK4=================");
+        System.out.println(DateTimeLab.minutesBetween(event1, event2));
+        System.out.println(DateTimeLab.startInZone(event1, "Europe/Berlin"));
+
 
 
 

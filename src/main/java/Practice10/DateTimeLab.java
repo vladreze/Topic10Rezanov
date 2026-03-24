@@ -16,7 +16,7 @@ public class DateTimeLab {
 
     public static long minutesBetween(Event a, Event b) {
         Duration duration = Duration.between(toInstant(a), toInstant(b));
-        return duration.toMinutes();
+        return Math.abs(duration.toMinutes());
     }
 
     public static ZonedDateTime startInZone(Event e, String zoneId) {
