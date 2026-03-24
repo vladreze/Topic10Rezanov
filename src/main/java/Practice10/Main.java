@@ -10,17 +10,19 @@ import java.util.List;
 import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Predicate;
+import java.util.function.Supplier;
 
 public class Main {
 
     public static void main(String[] args) {
         List<Event> events = new ArrayList<>();
         EventLab eventLab = new EventLab();
+        LambdaRefactorLab lambdaRefactorLab = new LambdaRefactorLab();
+        DateTimeLab dateTimeLab = new DateTimeLab();
 
         System.out.println("==============TASK1=================");
-        //task 1
         Event event1 = new Event("Event1", LocalDateTime.of(2026,1,1,23,23),10, ZoneId.of("Europe/Kyiv"),"Track1");
-        Event event2 = new Event("Event2", LocalDateTime.of(2025,2,4,12,12),20, ZoneId.of("Europe/Berlin"),"Track2");
+        Event event2 = new Event("Event2", LocalDateTime.of(2025,2,4,11,12),20, ZoneId.of("Europe/Berlin"),"Track2");
         Event event3 = new Event("Event3", LocalDateTime.of(2024,3,5,15,15),30, ZoneId.of("Europe/London"),"Track3");
 
         events.add(event1);
@@ -33,7 +35,7 @@ public class Main {
 
         System.out.println("==============TASK2=================");
 
-        Predicate<Event> rule = event -> event.getZone().equals(ZoneId.of("Europe/Kyiv"));
+        Predicate<Event> rule = event -> event.getStart().getHour() < 12;
         System.out.println(EventLab.pick(events,rule));
 
         System.out.println("=====================================");
@@ -48,19 +50,21 @@ public class Main {
 
         System.out.println("=====================================");
 
+        Supplier<Event> defaultEvent = () -> new Event("New Draft Event", LocalDateTime.now(), 30, ZoneId.of("Europe/Kyiv"), "Track"
+        );
+        System.out.println(EventLab.creat(defaultEvent));
+
         System.out.println("=====================================");
         Event event3Copy = new Event("Event3", LocalDateTime.of(2024,3,5,15,15),30, ZoneId.of("Europe/London"),"Track3");
         events.add(event3Copy);
         EventLab.findConflicts(events);
 
 
-
-
-
-
-
         System.out.println("==============TASK3=================");
-        System.out.println("==============TASK4=================");
+        LambdaRefactorLab.sortMethodRef(events);
+        System.out.println(events);
+
+
 
 
 
